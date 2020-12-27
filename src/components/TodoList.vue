@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" @remove-todo="removeTodo"/>
+            <TodoItem v-for="(todo, idx) in todos" :key="todo.id" :todo="todo" :index="idx" @remove-todo="removeTodo"/>
         </ul>
     </div>
 </template>
