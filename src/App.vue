@@ -1,14 +1,26 @@
 <template>
   <div id="app">
-
+    <h1>Todo application</h1>
+    <hr>
+    <TodoList :todos="todos"/>
   </div>
 </template>
 
 <script>
-
+import TodoList from "./components/TodoList";
 export default {
   name: 'App',
+  data() {
+    return {
+      todos: [
+        {id: 1, title: "Buy fruits", completed: false},
+        {id: 2, title: "Learn English", completed: false},
+        {id: 3, title: "GYM", completed: false},
+      ]
+    }
+  },
   components: {
+    TodoList
   }
 }
 </script>
