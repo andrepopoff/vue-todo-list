@@ -14,15 +14,16 @@ export default {
   name: 'App',
   data() {
     return {
-      todos: [
-        {id: 1, title: "Buy fruits", completed: false},
-        {id: 2, title: "Learn English", completed: false},
-        {id: 3, title: "GYM", completed: false},
-      ]
+      todos: []
     }
   },
   components: {
     TodoList, AddTodo
+  },
+  mounted() {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+            .then(response => response.json())
+            .then(json => this.todos = json)
   },
   methods: {
     removeTodo(id) {
