@@ -3,9 +3,14 @@
         <h2>Todo application</h2>
         <router-link to="/">Home</router-link>
         <AddTodo @add-todo="addTodo"/>
+        <select v-model="filter">
+            <option value="all">All</option>
+            <option value="not-completed">Not Completed</option>
+            <option value="completed">Completed</option>
+        </select>
         <hr>
         <Loader v-if="loading" />
-        <TodoList v-else-if="todos.length" :todos="todos" @remove-todo="removeTodo"/>
+        <TodoList v-else-if="filteredTodos.length" :todos="filteredTodos" @remove-todo="removeTodo"/>
         <p v-else>No todos!</p>
     </div>
 </template>
@@ -19,11 +24,28 @@
         data() {
             return {
                 todos: [],
-                loading: true
+                loading: true,
+                filter: "all"
             }
         },
         components: {
             TodoList, AddTodo, Loader
+        },
+        computed: {
+            // eslint-disable-next-line vue/return-in-computed-property
+            filteredTodos() {
+                if (this.filter === "all") {
+                    return this.todos
+                }
+
+                if (this.filter === "completed") {
+                    return this.todos.filter(todo => todo.completed)
+                }
+
+                if (this.filter === "not-completed") {
+                    return this.todos.filter(todo => !todo.completed)
+                }
+            }
         },
         mounted() {
             fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
