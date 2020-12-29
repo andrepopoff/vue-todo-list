@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Todo application</h2>
+        <h2>Tasks</h2>
         <router-link to="/">Home</router-link>
         <AddTodo @add-todo="addTodo"/>
         <select v-model="filter">

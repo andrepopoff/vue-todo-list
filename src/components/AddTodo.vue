@@ -32,6 +32,7 @@
 <style scoped>
     form {
         display: flex;
+        justify-content: center;
     }
     input {
         width: 400px
